@@ -72,7 +72,7 @@ footer{margin-top:32px;padding:18px;background:#000;color:#888;font-size:14px;te
   <!-- Toolbar -->
   <header>
     <div class="logo-text">DarkSpy</div>
-    <img src="your-logo.png" alt="Logo" class="logo-img"/>
+    <img src="𝗗𝗮𝗿𝗸𝗦𝗽𝘆.jpg" alt="Logo" class="logo-img"/>
   </header>
 
   <div class="container">
@@ -107,9 +107,26 @@ h1>Zphisher: How To Use Zphisher</h1>
     <!-- Navigation buttons -->
     <a href="Tutorials.html" class="btn">Back to Tutorials</a>
     <a href="https://whatsapp.com/channel/0029Vb6FWwJATRSexmu65M0a" class="btn">Open WhatsApp Channel</a>
-    <a href="index.html"><button type="button">Back Home</button></a>.
+    <div style="text-align: center;">
+  <a href="index.html" target="_blank">Back Home</a>
+</div>.
   </div>
-
+<script>
+  function copyCommand(button) {
+    const codeBlock = button.parentElement.querySelector('code');
+    const text = codeBlock.innerText;
+    const textarea = document.createElement("textarea");
+    textarea.value = text;
+    textarea.style.position = "absolute";
+    textarea.style.left = "-9999px";
+    document.body.appendChild(textarea);
+    textarea.select();
+    try { document.execCommand('copy'); button.innerText = "Copied!"; } 
+    catch { alert("Copy failed, copy manually"); }
+    document.body.removeChild(textarea);
+    setTimeout(() => { button.innerText = "Copy"; }, 1500);
+  }
+</script>
   <footer>
     © 2025 DarkSpy | All rights reserved | Educational purposes only
   </footer>
