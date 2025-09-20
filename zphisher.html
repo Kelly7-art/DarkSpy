@@ -55,37 +55,237 @@ bash zphisher.sh
   <footer>
     © 2025 DarkSpy | All rights reserved | Educational purposes only
   </footer>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DarkSpy - Termux Tools</title>
+  <style>
+/* === Background with Stars === */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", sans-serif;
+  color: #f0f0f0;
+  background: black;
+  overflow-x: hidden;
+  padding-top: 70px; /* space for fixed toolbar */
+}
+body::before, body::after {
+  content: "";
+  position: fixed;
+  top: 0; left: 0;
+  width: 200%; height: 200%;
+  background: 
+    radial-gradient(2px 2px at 10% 20%, #00ff99, transparent),
+    radial-gradient(2px 2px at 30% 80%, #00ff99, transparent),
+    radial-gradient(2px 2px at 70% 40%, #00ff99, transparent),
+    radial-gradient(2px 2px at 90% 70%, #00ff99, transparent),
+    radial-gradient(1.5px 1.5px at 50% 10%, #00ff99, transparent),
+    radial-gradient(1.5px 1.5px at 20% 50%, #00ff99, transparent),
+    radial-gradient(1.5px 1.5px at 80% 90%, #00ff99, transparent);
+  background-size: 800px 600px;
+  animation: stars 90s linear infinite;
+  z-index: -1;
+  opacity: 0.8;
+}
+body::after {
+  animation-direction: reverse;
+  opacity: 0.5;
+}
+@keyframes stars {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-600px); }
+}
+
+/* === Fixed Toolbar === */
+header {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 60px;
+  background: rgba(0, 0, 0, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  box-shadow: 0 0 15px rgba(0,255,153,0.4);
+  z-index: 1000;
+}
+header .logo-text {
+  color: #00ff99;
+  font-size: 22px;
+  font-weight: bold;
+}
+header .logo-img {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #00ff99;
+}
+
+/* === Page Content === */
+h1, h2, h3 {
+  text-align: center;
+  color: #00ff99;
+  margin-top: 20px;
+  font-weight: bold;
+}
+p {
+  text-align: center;
+  margin: 10px auto;
+  max-width: 900px;
+  line-height: 1.6;
+  font-size: 16px;
+  color: #ccc;
+}
+
+/* === Tool Card === */
+.tool-card {
+  background: #1a1a1a;
+  padding: 20px;
+  margin: 20px auto;
+  border-radius: 10px;
+  max-width: 600px;
+  text-align: left;
+  box-shadow: 0 2px 10px rgba(0,255,153,0.2);
+}
+.tool-card h2 { color: #00ff99; margin-bottom: 10px; }
+.tool-card p { margin: 5px 0; }
+
+/* === Command Container === */
+.command-container {
+  background: #000;
+  padding: 15px;
+  border-radius: 8px;
+  position: relative;
+  margin-top: 10px;
+}
+.command-container code {
+  display: block;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  color: #00ff99;
+  font-family: "Courier New", monospace;
+}
+.copy-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #00ff99;
+  border: none;
+  color: #111;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.copy-btn:hover { background: #00cc00; }
+
+/* === Buttons === */
+.btn {
+  display: inline-block;
+  text-align: center;
+  background: transparent;
+  border: 2px solid #00ff99;
+  color: #00ff99;
+  padding: 12px 0;
+  margin: 10px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+  width: 220px;
+  transition: 0.3s ease;
+}
+.btn:hover { background: #00ff99; color: black; }
+.btn:active { box-shadow: 0 0 25px #00ff99, 0 0 40px #00ff99; }
+
+/* === Floating WhatsApp Button === */
+.float-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #25D366;
+  color: white;
+  padding: 15px;
+  border-radius: 50%;
+  font-size: 24px;
+  text-decoration: none;
+  box-shadow: 0 0 15px rgba(0,0,0,0.5);
+}
+
+/* === Footer === */
+footer {
+  background: #000;
+  color: #888;
+  padding: 20px;
+  text-align: center;
+  font-size: 14px;
+  margin-top: 20px;
+  border-top: 1px solid #111;
+}
+  </style>
+</head>
+<body>
+
+  <!-- Toolbar -->
+  <header>
+    <div class="logo-text">DarkSpy</div>
+    <img src="darkspylogo.png" alt="Logo" class="logo-img">
+  </header>
+
+  <h1>Termux Tools</h1>
+
+  <!-- Tool 1 -->
+  <div class="tool-card">
+    <h2>Tool 1: Zphisher</h2>
+    <p><strong>Description:</strong> Automated phishing tool with 30+ templates.</p>
+    <p><strong>Installation in Termux:</strong></p>
+    
+    <div class="command-container">
+      <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+      <code>
+pkg update && pkg upgrade
+pkg install git
+git clone https://github.com/htr-tech/zphisher
+cd zphisher
+bash zphisher.sh
+      </code>
+    </div>
+  </div>
+  <p>Type last 2 commands to run Zphisher next time</p>
+
+  <!-- Navigation Buttons -->
+  <div style="text-align:center;">
+    <a href="index.html" class="btn">Back Home</a>
+    <a href="https://whatsapp.com/channel/0029Vb6FWwJATRSexmu65M0a" class="float-btn">💬</a>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2025 DarkSpy. All rights reserved. <br>
+    Educational purposes only.
+  </footer>
 
   <script>
   function copyCommand(button) {
     const codeBlock = button.parentElement.querySelector('code');
     const text = codeBlock.innerText;
-
-    // Create temporary textarea
     const textarea = document.createElement("textarea");
     textarea.value = text;
     textarea.style.position = "absolute";
-    textarea.style.left = "-9999px"; // hide it offscreen
+    textarea.style.left = "-9999px";
     document.body.appendChild(textarea);
     textarea.select();
-    try {
-      const successful = document.execCommand('copy'); // fallback method
-      if (successful) {
-        button.innerText = "Copied!";
-      } else {
-        alert("Copy failed, please copy manually");
-      }
-    } catch (err) {
-      alert("Copy failed, please copy manually");
-    }
+    try { document.execCommand('copy'); button.innerText = "Copied!"; } 
+    catch { alert("Copy failed, copy manually"); }
     document.body.removeChild(textarea);
-
-    // Reset button text after 1.5 seconds
     setTimeout(() => { button.innerText = "Copy"; }, 1500);
   }
-</script>
-<a href="index.html">
-  <button type="button">Back Home</button>
-</a>.
+  </script>
+
 </body>
 </html>
